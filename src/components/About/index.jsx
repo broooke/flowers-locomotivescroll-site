@@ -8,8 +8,14 @@ import cn from 'classnames'
 
 function About() {
     const ref = useRef()
+
+    const [reveal, setReveal] = useState(false)
     
-    const reveal = useOnScreen(ref)
+    const onScreen = useOnScreen(ref)
+
+    useEffect(() => {
+        if (onScreen) setReveal(onScreen)
+    }, [onScreen])
 
     useEffect(() => {
         if (reveal) {
@@ -28,9 +34,9 @@ function About() {
     }, [reveal])
 
     return (
-        <section className={cn("about-section", {'is-reveal': reveal})} data-scroll-section>
+        <section className={cn("about-section")} data-scroll-section>
             <SectionHeader title="about" />
-            <p ref={ref} id="headline">
+            <p ref={ref} id="headline" className={cn({'is-reveal': reveal})}>
                 Flirty Flowers is a blog about flowers and the floral
                 designers who make them into art. Creativity and
                 the art of ‘making’ require dialogue. The full purpose

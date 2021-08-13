@@ -6,5 +6,10 @@
         font-size: 12vw;
         text-transform: uppercase;
         font-family: "Bodoni Moda", serif;
+        opacity: 0;
+
+        &.is-reveal {
+            opacity: 1;
+        }
     }
 }
